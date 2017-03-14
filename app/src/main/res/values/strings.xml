@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExpressDelivery</string>
+    <string name="tip_viewpage_content">您还没有签收的快递记录点+添加</string>
+    <string name="tip_tab_gc">回收站无数据</string>
+</resources>
