@@ -5,9 +5,10 @@
               android:layout_width="match_parent"
               android:layout_height="50dp">
       <com.example.lyw.expressdelivery.view.ViewpagerIndicator
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
           android:layout_height="match_parent"
-          lyw:visible_count = "5"
+          android:layout_weight="4"
+          lyw:visible_count = "4"
           android:orientation="horizontal"
           android:background="@color/background"
           android:gravity="center"
@@ -44,12 +45,12 @@
                 android:textColor="@color/text_normal"
                 android:textSize="15sp"
                 android:text="回收站"/>
-
+      </com.example.lyw.expressdelivery.view.ViewpagerIndicator>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/express_search"/>
-      </com.example.lyw.expressdelivery.view.ViewpagerIndicator>
+
 
 </LinearLayout>

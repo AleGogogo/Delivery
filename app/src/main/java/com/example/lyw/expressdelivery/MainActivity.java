@@ -30,11 +30,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mToolbar = (Toolbar) findViewById(R.id.id_toolbar);
-        setSupportActionBar(mToolbar);
-        mIndicator = (ViewpagerIndicator) findViewById(R.id
-                .id_viewpagerindicator);
-        mViewPage = (ViewPager) findViewById(R.id.id_viewpager);
 
 
     }
