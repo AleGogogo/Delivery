@@ -5,8 +5,8 @@
               android:layout_height="match_parent"
               android:gravity="center">
            <ImageView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
+               android:layout_width="200dp"
+               android:layout_height="150dp"
                android:layout_gravity="center"
                android:src="@drawable/error_404"
                android:id="@+id/id_tab2_no_content"/>
@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:textColor="#8B8989"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="@string/tip_tab_gc"/>
 </LinearLayout>

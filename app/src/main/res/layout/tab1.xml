@@ -5,8 +5,8 @@
               android:layout_height="match_parent"
               android:gravity="center">
      <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
+         android:layout_width="200dp"
+         android:layout_height="150dp"
          android:layout_gravity="center"
          android:src="@drawable/image_no_bill_arrow_no_text"
          android:id="@+id/id_tab_nocontent"/>
@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:textSize="18sp"
         android:textColor="#8B8989"
         android:text="@string/tip_viewpage_content"/>
 </LinearLayout>

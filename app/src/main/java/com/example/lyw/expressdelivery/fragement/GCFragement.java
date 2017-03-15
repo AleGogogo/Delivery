@@ -13,11 +13,12 @@ import com.example.lyw.expressdelivery.R;
  * Created by LYW on 2017/3/13.
  */
 
-public class GCFragement extends Fragment {
-    @Nullable
+public class GCFragement extends BasicFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup
-            container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab2,container,false);
+    public int getResourceId() {
+        return R.layout.tab2;
     }
+
+
 }

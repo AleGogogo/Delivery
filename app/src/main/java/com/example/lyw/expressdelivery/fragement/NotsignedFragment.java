@@ -13,12 +13,12 @@ import com.example.lyw.expressdelivery.R;
  * Created by LYW on 2017/3/13.
  */
 
-public class NotsignedFragment extends Fragment{
+public class NotsignedFragment extends BasicFragment{
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup
-            container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab1,container,false);
+    public int getResourceId() {
+        return R.layout.tab1;
     }
+
+
 }

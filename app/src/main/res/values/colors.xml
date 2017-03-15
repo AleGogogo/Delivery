@@ -7,4 +7,6 @@
     <color name="text_pressed">#0000FF</color>
     <color name="background">#F5F5F5</color>
     <color name="normal" >#BEBEBE</color>
+    <color name="strok_beixuan">#8B8970</color>
+
 </resources>
