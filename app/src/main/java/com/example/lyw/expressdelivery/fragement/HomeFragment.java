@@ -23,7 +23,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private ViewPager mViewPage;
     private List<Fragment> mFragmentcontainer = new ArrayList<>();
-    private List<String> mTitles = Arrays.asList("全部","未签收","已签收","回收站");
+    private List<String> mTitles = Arrays.asList("全部", "未签收", "已签收", "回收站");
     private ViewpagerIndicator mIndicator;
 
     @Nullable
@@ -38,13 +38,13 @@ public class HomeFragment extends Fragment {
 
     private void initView(View view) {
         mViewPage = (ViewPager) view.findViewById(R.id.id_viewpager);
-        mIndicator = (ViewpagerIndicator) view.findViewById(R.id
-                .id_viewpagerindicator);
+        mIndicator = (ViewpagerIndicator) view.findViewById(R.id.id_viewpagerindicator);
         mFragmentcontainer.add(new MainFragment());
         mFragmentcontainer.add(new NotsignedFragment());
         mFragmentcontainer.add(new SignedFragement());
         mFragmentcontainer.add(new GCFragement());
         mIndicator.setTabItemTitles(mTitles);
+        mIndicator.setViewPager(mViewPage);
         mViewPage.setAdapter(new FragmentPagerAdapter(getFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

@@ -1,25 +1,11 @@
 package com.example.lyw.expressdelivery;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
-import com.example.lyw.expressdelivery.fragement.GCFragement;
-import com.example.lyw.expressdelivery.fragement.MainFragment;
-import com.example.lyw.expressdelivery.view.ViewpagerIndicator;
-
-import java.util.List;
+import com.example.lyw.expressdelivery.fragement.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
-    private List<Fragment> mFragmentList;
-    private ViewpagerIndicator mIndicator;
-    private ViewPager mViewPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
 }
