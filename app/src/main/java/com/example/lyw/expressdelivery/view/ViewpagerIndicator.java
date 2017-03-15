@@ -11,14 +11,18 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lyw.expressdelivery.R;
 
-import static android.content.ContentValues.TAG;
+import java.util.List;
+
 
 /**
  * Created by LYW on 2017/3/14.
@@ -39,6 +43,7 @@ public class ViewpagerIndicator extends LinearLayout {
     private Path mPath;
     private static final int TEXT_COLOR_LIGHT = 0x4169E1;
     private static final int TEXT_COLOR_NORMAL = 0x8B8989;
+    private List<String> mTitles;
 
     public ViewpagerIndicator(Context context) {
         this(context, null);
@@ -88,31 +93,61 @@ public class ViewpagerIndicator extends LinearLayout {
         }
         // TODO: 2017/3/14 这里设置tab点击事件的处理
     }
-
     /**
-     * 在这里画长方形
-     * 绘制VIew本身的内容，通过调用View.onDraw(canvas)函数实现
-     * 绘制自己的孩子通过dispatchDraw（canvas）实现
+     * 根据title创建tab
      *
-     * @param canvas
+     * @param titles
      */
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        mLineWidth = getScreenWidth() / mVisibleCount ;
-        canvas.drawLine(0,getBottom(),mLineWidth,getBottom(),mPaint);
-        canvas.restore();
-        Log.d(TAG, "dispatchDraw: 开始画指示器了");
-        super.dispatchDraw(canvas);
+    public void setTabItemTitles(List<String> titles) {
+        //首先判断titles的有效性
+        if (titles != null && titles.size() > 0) {
+            this.removeAllViews();
+            mTitles = titles;
+            for (String title : mTitles) {
+                addView(generateTextView(title));
+            }
+        }
     }
+        /**
+         * 在这里画长方形
+         * 绘制VIew本身的内容，通过调用View.onDraw(canvas)函数实现
+         * 绘制自己的孩子通过dispatchDraw（canvas）实现
+         *
+         * @param canvas
+         */
+        @Override
+        protected void dispatchDraw (Canvas canvas){
+            canvas.save();
+            mLineWidth = getScreenWidth() / mVisibleCount;
+            canvas.drawLine(0, getBottom(), mLineWidth, getBottom(), mPaint);
+            canvas.restore();
+            Log.d(TAG, "dispatchDraw: 开始画指示器了");
+            super.dispatchDraw(canvas);
+        }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mLineWidth = w / mVisibleCount;
-        mInitTranslateX = 0;
-        initLinePath();
-        Log.d(TAG, "onSizeChanged: 开始滑动了");
+        @Override
+        protected void onSizeChanged ( int w, int h, int oldw, int oldh){
+            super.onSizeChanged(w, h, oldw, oldh);
+            mLineWidth = w / mVisibleCount;
+            mInitTranslateX = 0;
+            initLinePath();
+            Log.d(TAG, "onSizeChanged: 开始滑动了");
+        }
+
+
+    private View generateTextView(String title) {
+
+        TextView textView = new TextView(getContext());
+        LayoutParams Lp = new LayoutParams(ViewGroup
+                .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams
+                .MATCH_PARENT);
+        Lp.width = getScreenWidth() / mVisibleCount;
+        textView.setText(title);
+        textView.setTextColor(TEXT_COLOR_NORMAL);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        textView.setLayoutParams(Lp);
+        return textView;
     }
 
     private void initLinePath() {

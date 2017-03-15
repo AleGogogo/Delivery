@@ -13,6 +13,7 @@ import com.example.lyw.expressdelivery.R;
 import com.example.lyw.expressdelivery.view.ViewpagerIndicator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private ViewPager mViewPage;
     private List<Fragment> mFragmentcontainer = new ArrayList<>();
+    private List<String> mTitles = Arrays.asList("全部","未签收","已签收","回收站");
     private ViewpagerIndicator mIndicator;
 
     @Nullable
@@ -42,6 +44,7 @@ public class HomeFragment extends Fragment {
         mFragmentcontainer.add(new NotsignedFragment());
         mFragmentcontainer.add(new SignedFragement());
         mFragmentcontainer.add(new GCFragement());
+        mIndicator.setTabItemTitles(mTitles);
         mViewPage.setAdapter(new FragmentPagerAdapter(getFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

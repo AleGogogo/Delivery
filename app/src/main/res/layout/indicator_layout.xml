@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:lyw = "http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="50dp">
       <com.example.lyw.expressdelivery.view.ViewpagerIndicator
@@ -48,8 +48,8 @@
       </com.example.lyw.expressdelivery.view.ViewpagerIndicator>
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:src="@drawable/express_search"/>
 
 
