@@ -3,6 +3,7 @@ package com.example.lyw.expressdelivery.net;
 import android.util.Log;
 
 
+import com.example.lyw.expressdelivery.request.Params;
 import com.example.lyw.expressdelivery.request.Request;
 import com.example.lyw.expressdelivery.util.HttpHeader;
 import com.google.gson.Gson;
@@ -28,13 +29,16 @@ public class HttpConnectionStack implements Httpstack {
         InputStream is = null;
         HttpURLConnection con = null;
         OutputStream os = null;
-        Gson gson = new Gson();
         try {
             URL url = new URL(mRequest.getUrl());
             con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(mRequest.getmMethod()+"");
             con.setReadTimeout(2000);
             con.setConnectTimeout(2000);
+            con.setDoOutput(true);
+            // Read from the connection. Default is true.
+            con.setDoInput(true);
+            // 默认是 GET方式
             HttpHeader header = mRequest.getHeader();
             for (String key:
                  header.keySet()) {
@@ -43,9 +47,15 @@ public class HttpConnectionStack implements Httpstack {
             Log.d(TAG, "perFormRequest: --------");
             con.connect();
             os = con.getOutputStream();
-            String json = gson.toJson(mRequest.getmBody());
             PrintStream ps = new PrintStream(os);
-            ps.print(json);
+            Params params = mRequest.getParams();
+            for (String key:
+                 params.keySet()) {
+                ps.print(key+"="+params.get(key));
+                if (!params.get(key).equals("json")) {
+                    ps.print("&");
+                }
+            }
             ps.flush();
             ps.close();
             try {

@@ -14,13 +14,16 @@ import com.example.lyw.expressdelivery.fragement.HomeFragment;
 import com.example.lyw.expressdelivery.fragement.SearchFragment;
 import com.example.lyw.expressdelivery.net.CachePolicy;
 import com.example.lyw.expressdelivery.net.HttpMethod;
+import com.example.lyw.expressdelivery.net.NameValuesMap;
 import com.example.lyw.expressdelivery.net.RequestManager;
 import com.example.lyw.expressdelivery.net.Response;
+import com.example.lyw.expressdelivery.request.Params;
 import com.example.lyw.expressdelivery.request.Request;
 import com.example.lyw.expressdelivery.request.StringRequst;
 import com.example.lyw.expressdelivery.request.requestBody;
 import com.example.lyw.expressdelivery.util.HttpHeader;
 import com.example.lyw.expressdelivery.util.RequestUrl;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton mHomeButton;
@@ -117,13 +120,21 @@ public class MainActivity extends AppCompatActivity {
 //        body.setT(t);
         body.setMType("mars");
         body.setUchannel("null");
+        Params params = new Params();
+        Gson gson = new Gson();
+        String json = gson.toJson(body);
+        params.set("mathod","courieraround");
+        params.set("json",json);
+        params.set("hash","7f58bc797f122e6d9a608134b477c300");
+        params.set("token",null);
+        params.set("userid","0");
         StringRequst requst = new StringRequst(5, RequestUrl.REQUEST_URL, header,
                 HttpMethod.POST, body, mListener, new CachePolicy() {
             @Override
             public boolean isNeedCached() {
                 return false;
             }
-        });
+        },params);
         requst.setTag("string");
         return requst;
     }

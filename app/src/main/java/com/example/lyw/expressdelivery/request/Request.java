@@ -4,11 +4,12 @@ package com.example.lyw.expressdelivery.request;
 
 import com.example.lyw.expressdelivery.net.CachePolicy;
 import com.example.lyw.expressdelivery.net.HttpMethod;
+import com.example.lyw.expressdelivery.net.NameValuesMap;
 import com.example.lyw.expressdelivery.net.Response;
 import com.example.lyw.expressdelivery.util.HttpHeader;
 
 import java.io.InputStream;
-import java.util.HashMap;
+
 
 /**
  * Created by LYW on 2017/3/6.
@@ -18,6 +19,7 @@ public abstract class Request implements Comparable<Request>{
       private int priorityId;
       private String url;
       private HttpHeader header;
+      private Params params;
 
     public HttpMethod getmMethod() {
         return mMethod;
@@ -33,9 +35,17 @@ public abstract class Request implements Comparable<Request>{
       private CachePolicy mCachePolicy;
       private String mTag;
 
+    public Params getParams() {
+        return params;
+    }
+
+    public void setParams(Params params) {
+        this.params = params;
+    }
+
     public Request(int priorityId, String url, HttpHeader header, HttpMethod
             mMethod, requestBody mBody, Listener mListener, CachePolicy
-            mCachePolicy) {
+            mCachePolicy, Params params) {
         this.priorityId = priorityId;
         this.url = url;
         this.header = header;
@@ -43,6 +53,8 @@ public abstract class Request implements Comparable<Request>{
         this.mBody = mBody;
         this.mListener = mListener;
         this.mCachePolicy = mCachePolicy;
+        this.params = params;
+
     }
 
     public String getTag() {

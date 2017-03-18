@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.lyw.expressdelivery.net.CachePolicy;
 import com.example.lyw.expressdelivery.net.HttpMethod;
+import com.example.lyw.expressdelivery.net.NameValuesMap;
 import com.example.lyw.expressdelivery.net.Response;
 import com.example.lyw.expressdelivery.util.HttpHeader;
 
@@ -23,8 +24,11 @@ public class StringRequst extends Request {
 
     private static final String TAG = "StringRequst";
 
-    public StringRequst(int priorityId, String url, HttpHeader header, HttpMethod mMethod, requestBody mBody, Listener mListener, CachePolicy mCachePolicy) {
-        super(priorityId, url, header, mMethod, mBody, mListener, mCachePolicy);
+    public StringRequst(int priorityId, String url, HttpHeader header,
+                        HttpMethod mMethod, requestBody mBody, Listener
+                                mListener, CachePolicy mCachePolicy,
+                        NameValuesMap<String, String> params) {
+        super(priorityId, url, header, mMethod, mBody, mListener, mCachePolicy, params);
     }
 
 
