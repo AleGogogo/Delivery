@@ -27,7 +27,7 @@ public class StringRequst extends Request {
     public StringRequst(int priorityId, String url, HttpHeader header,
                         HttpMethod mMethod, requestBody mBody, Listener
                                 mListener, CachePolicy mCachePolicy,
-                        NameValuesMap<String, String> params) {
+                       Params params) {
         super(priorityId, url, header, mMethod, mBody, mListener, mCachePolicy, params);
     }
 

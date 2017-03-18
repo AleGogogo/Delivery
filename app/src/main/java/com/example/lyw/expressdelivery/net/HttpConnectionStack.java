@@ -36,7 +36,7 @@ public class HttpConnectionStack implements Httpstack {
             con.setDoOutput(true);
             // Read from the connection. Default is true.
             con.setDoInput(true);
-            con.setReadTimeout(2000);
+            con.setReadTimeout(5000);
             con.setConnectTimeout(2000);
 
             // 默认是 GET方式
@@ -50,13 +50,16 @@ public class HttpConnectionStack implements Httpstack {
             os = con.getOutputStream();
             PrintStream ps = new PrintStream(os);
             Params params = mRequest.getParams();
+            StringBuilder sb = new StringBuilder();
             for (String key:
                  params.keySet()) {
-                ps.print(key+"="+params.get(key));
+                sb.append(key+"="+params.get(key));
                 if (params.get(key) != "json") {
-                    ps.print("&");
+                   sb.append("&");
                 }
             }
+            Log.d(TAG, "perFormRequest: sb is"+sb.toString());
+            ps.print(sb.toString());
             ps.flush();
             ps.close();
             try {

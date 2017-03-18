@@ -6,22 +6,13 @@ package com.example.lyw.expressdelivery.request;
 
 public class requestBody {
     /**
-     * latitude : 39.961866963074606
-     * longitude : 116.35616120383973
-     * ltype : mars
-     * appid : com.Kingdee.Express
-     * versionCode : 436
-     * os_version : android5.1.1
-     * os_name : A0001
-     * t : 1489224769854
-     * tra : f11761ea-3f99-46ca-b959-6334a0a25e7f
-     * uchannel : null
-     * nt : wifi
-     * mType : mars
-     * mLatitude : 39.961866963074606
-     * mLongitude : 116.35616120383973
-     * adcode : 110108
-     * address : 北京市海淀区西土城路辅路靠近北京邮电大学电子工程学院
+     * {"latitude":"40.047275040481445","longitude":"116.32690854887272",
+     * "ltype":"mars","appid":"com.Kingdee.Express","versionCode":436,
+     * "os_version":"android5.1.1","os_name":"A0001","t":1489828532804,
+     * "tra":"f11761ea-3f99-46ca-b959-6334a0a25e7f","uchannel":"null",
+     * "nt":"wifi","mType":"mars","mLatitude":40.047275040481445,
+     * "mLongitude":116.32690854887272,"adcode":"110108",
+     * "address":"北京市海淀区安宁庄东路靠近安宁庄后街13号院(安宁庄东路)"}
      */
 
     private String latitude;
@@ -31,7 +22,7 @@ public class requestBody {
     private int versionCode;
     private String os_version;
     private String os_name;
-    private long  t;
+    private long t;
     private String tra;
     private String uchannel;
     private String nt;
