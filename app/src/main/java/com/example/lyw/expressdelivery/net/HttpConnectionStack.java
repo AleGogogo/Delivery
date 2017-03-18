@@ -33,11 +33,12 @@ public class HttpConnectionStack implements Httpstack {
             URL url = new URL(mRequest.getUrl());
             con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(mRequest.getmMethod()+"");
-            con.setReadTimeout(2000);
-            con.setConnectTimeout(2000);
             con.setDoOutput(true);
             // Read from the connection. Default is true.
             con.setDoInput(true);
+            con.setReadTimeout(2000);
+            con.setConnectTimeout(2000);
+
             // 默认是 GET方式
             HttpHeader header = mRequest.getHeader();
             for (String key:
@@ -52,7 +53,7 @@ public class HttpConnectionStack implements Httpstack {
             for (String key:
                  params.keySet()) {
                 ps.print(key+"="+params.get(key));
-                if (!params.get(key).equals("json")) {
+                if (params.get(key) != "json") {
                     ps.print("&");
                 }
             }
