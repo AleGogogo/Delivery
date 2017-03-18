@@ -42,7 +42,7 @@ public class ViewpagerIndicator extends LinearLayout {
     private Context mContext;
     private Paint mPaint;
     private Path mPath;
-    private static final int TEXT_COLOR_LIGHT = 0xFFF00000;
+    private static final int TEXT_COLOR_LIGHT = 0xFF4169E1;
     private static final int TEXT_COLOR_NORMAL = 0xFF000000;
     private List<String> mTitles;
 

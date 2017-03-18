@@ -5,4 +5,7 @@ package com.example.lyw.expressdelivery.util;
  */
 
 public class RequestUrl {
+    public static final String DANHAO = "";
+    public static final String REQUEST_URL = "https://m.kuaidi100.com";
+    public static final String QUERY_KUAIDI = "/index_all.html?";
 }

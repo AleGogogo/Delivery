@@ -1,11 +1,7 @@
 package com.example.lyw.expressdelivery.net;
 
-import com.example.lyw.networkstructs.CacheDelivery;
-import com.example.lyw.networkstructs.HttpConnectionStack;
-import com.example.lyw.networkstructs.Httpstack;
-import com.example.lyw.networkstructs.NetWorkDelivery;
-import com.example.lyw.networkstructs.entity.Request;
 
+import com.example.lyw.expressdelivery.request.Request;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -52,7 +48,7 @@ public class RequestManager {
                     }
                 }
             }
-        });
+        }).start();
 
     }
 

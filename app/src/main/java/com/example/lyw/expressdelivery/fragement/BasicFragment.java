@@ -15,29 +15,15 @@ import android.widget.TextView;
 
 public abstract class BasicFragment extends Fragment {
     public String mTitle;
-    public static final String BUNDLE_TITLE = "mtitle";
     public abstract int getResourceId();
+    public View Rootview;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup
             container, @Nullable Bundle savedInstanceState) {
-           View view =inflater.inflate(getResourceId(),container,false);
-          Bundle bundle = getArguments();
-         if (bundle != null){
-            mTitle = bundle.getString(BUNDLE_TITLE);
-         }
-        TextView textView = new TextView(getActivity());
-        textView.setText(mTitle);
-        textView.setGravity(Gravity.CENTER);
-        return view;
+            Rootview =inflater.inflate(getResourceId(),container,false);
+        return Rootview;
     }
-    public static Fragment getInstance(String title){
 
-        Bundle bundle = new Bundle();
-        bundle.putString(BUNDLE_TITLE,title);
-        Fragment basicFragment = new Fragment();
-        basicFragment.setArguments(bundle);
-        return basicFragment;
-    }
 }

@@ -5,4 +5,22 @@ package com.example.lyw.expressdelivery.entity;
  */
 
 public class LocalInfo {
+    private String fromInfo;
+    private String toInfo;
+
+    public String getFromInfo() {
+        return fromInfo;
+    }
+
+    public void setFromInfo(String fromInfo) {
+        this.fromInfo = fromInfo;
+    }
+
+    public String getToInfo() {
+        return toInfo;
+    }
+
+    public void setToInfo(String toInfo) {
+        this.toInfo = toInfo;
+    }
 }

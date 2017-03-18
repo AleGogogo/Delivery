@@ -31,7 +31,7 @@ public class requestBody {
     private int versionCode;
     private String os_version;
     private String os_name;
-    private long t;
+    private long  t;
     private String tra;
     private String uchannel;
     private String nt;
@@ -174,7 +174,7 @@ public class requestBody {
      * "os_version":"android5.1.1","os_name":"A0001","t":1489224769854,
      * "tra":"f11761ea-3f99-46ca-b959-6334a0a25e7f","uchannel":"null",
      * "nt":"wifi","mType":"mars","mLatitude":39.961866963074606,
-     * "mLongitude":116.35616120383973,"adcode":"110108",
-     * "address":"北京市海淀区西土城路辅路靠近北京邮电大学电子工程学院"}
+     * "mLongitude":116.35616120383973,"adcode":,
+     * "address":}
      */
 }

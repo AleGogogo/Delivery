@@ -1,6 +1,6 @@
 package com.example.lyw.expressdelivery.net;
 
-import com.example.lyw.networkstructs.entity.Request;
+import com.example.lyw.expressdelivery.request.Request;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -29,7 +29,7 @@ public class NetWorkDelivery extends Thread{
         while (true) {
             try {
                 Request request = mNetworkQueue.take();
-                mExecutor.execute(new com.example.lyw.networkstructs.net.Engin(request, mStack));
+                mExecutor.execute(new Engin(request, mStack));
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

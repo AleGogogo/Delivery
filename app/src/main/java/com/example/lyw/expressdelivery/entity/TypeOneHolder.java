@@ -1,14 +1,30 @@
 package com.example.lyw.expressdelivery.entity;
 
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.example.lyw.expressdelivery.R;
+
 /**
  * Created by LYW on 2017/3/16.
  */
 
-public class TypeOneHolder {
+public class TypeOneHolder extends TypeHolder{
 
-    private int type = 0;
-    private String fromInfo;
-    private String ToInfo;
+    public int type = 1;
+    private TextView mFromInfo;
+    private TextView mToInfo;
+    private ImageButton mArrow;
+    private ImageButton mClear;
+
+    public TypeOneHolder(View itemView) {
+        super(itemView);
+        mFromInfo = (TextView) itemView.findViewById(R.id.id_local_from_text);
+        mToInfo = (TextView) itemView.findViewById(R.id.id_local_to_text);
+        mArrow = (ImageButton) itemView.findViewById(R.id.id_imgbutton_arrow);
+        mClear = (ImageButton) itemView.findViewById(R.id.id_delete_buttom);
+    }
 
     public int getType() {
         return type;
@@ -18,19 +34,14 @@ public class TypeOneHolder {
         this.type = type;
     }
 
-    public String getFromInfo() {
-        return fromInfo;
-    }
 
-    public void setFromInfo(String fromInfo) {
-        this.fromInfo = fromInfo;
-    }
 
-    public String getToInfo() {
-        return ToInfo;
-    }
 
-    public void setToInfo(String toInfo) {
-        ToInfo = toInfo;
+
+    @Override
+    public void bindHolder(Object model) {
+        LocalInfo info = (LocalInfo)model;
+        mToInfo.setText(info.getToInfo());
+        mFromInfo.setText(info.getFromInfo());
     }
 }

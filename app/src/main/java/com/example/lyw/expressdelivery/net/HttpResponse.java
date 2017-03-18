@@ -1,5 +1,7 @@
 package com.example.lyw.expressdelivery.net;
 
+import com.example.lyw.expressdelivery.util.HttpStatus;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;

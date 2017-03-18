@@ -2,6 +2,8 @@ package com.example.lyw.expressdelivery.net;
 
 import android.util.LruCache;
 
+import com.example.lyw.expressdelivery.request.Request;
+
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 

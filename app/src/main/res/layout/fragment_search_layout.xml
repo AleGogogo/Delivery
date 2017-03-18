@@ -43,7 +43,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
         android:background="@drawable/beixuan"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -60,6 +61,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -94,6 +97,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -106,13 +111,14 @@
             android:layout_gravity="center"
             android:src="@drawable/ico_company" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:src="@drawable/line"
             android:layout_weight="1">
 
-            <EditText
+            <TextView
                 android:id="@+id/id_input_editor_campany"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -121,13 +127,12 @@
                 android:layout_weight="1"
                 android:drawableBottom="@drawable/line"
                 android:hint="请选择快递公司"
-                android:maxLength="11"
-                android:maxLines="1"
                 android:textColor="@color/text_normal" />
 
             <ImageView
                 android:id="@+id/id_delete"
-                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/id_imgbutton_arrow"
                 android:src="@drawable/img_close_pressed_2" />
@@ -136,9 +141,23 @@
                 android:id="@+id/id_imgbutton_arrow"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_arrow_pressed" />
-        </RelativeLayout>
+                android:background="@drawable/btn_arrow_pressed"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+        </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/id_search_button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/text_normal"
+        android:textColor="@color/background"
+        android:textSize="15sp"
+        android:text="查快递"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

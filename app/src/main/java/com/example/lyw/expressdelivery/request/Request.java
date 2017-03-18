@@ -3,6 +3,7 @@ package com.example.lyw.expressdelivery.request;
 
 
 import com.example.lyw.expressdelivery.net.CachePolicy;
+import com.example.lyw.expressdelivery.net.HttpMethod;
 import com.example.lyw.expressdelivery.net.Response;
 import com.example.lyw.expressdelivery.util.HttpHeader;
 
@@ -17,12 +18,32 @@ public abstract class Request implements Comparable<Request>{
       private int priorityId;
       private String url;
       private HttpHeader header;
-      private HashMap<String,String> requestBody;
+
+    public HttpMethod getmMethod() {
+        return mMethod;
+    }
+
+    public void setmMethod(HttpMethod mMethod) {
+        this.mMethod = mMethod;
+    }
+
+    private HttpMethod mMethod;
+      private requestBody mBody;
       private Listener mListener;
       private CachePolicy mCachePolicy;
       private String mTag;
 
-
+    public Request(int priorityId, String url, HttpHeader header, HttpMethod
+            mMethod, requestBody mBody, Listener mListener, CachePolicy
+            mCachePolicy) {
+        this.priorityId = priorityId;
+        this.url = url;
+        this.header = header;
+        this.mMethod = mMethod;
+        this.mBody = mBody;
+        this.mListener = mListener;
+        this.mCachePolicy = mCachePolicy;
+    }
 
     public String getTag() {
         return mTag;
@@ -35,14 +56,7 @@ public abstract class Request implements Comparable<Request>{
     private boolean isCancle = true;
       private boolean isNeedCache = false;
 
-    public Request(HttpHeader header, int priorityId, String
-            url, HashMap<String, String> requestBody, CachePolicy cachePolicy) {
-        this.header = header;
-        this.priorityId = priorityId;
-        this.url = url;
-        this.requestBody = requestBody;
-        mCachePolicy = cachePolicy;
-    }
+
 
     public void setIdNeedCache(boolean flag){
            isNeedCache = flag;
@@ -74,12 +88,12 @@ public abstract class Request implements Comparable<Request>{
         this.header = header;
     }
 
-    public HashMap<String, String> getRequestBody() {
-        return requestBody;
+    public requestBody getmBody() {
+        return mBody;
     }
 
-    public void setRequestBody(HashMap<String, String> requestBody) {
-        this.requestBody = requestBody;
+    public void setmBody(requestBody mBody) {
+        this.mBody = mBody;
     }
 
     public void cancleRequest(){
