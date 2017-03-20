@@ -1,7 +1,6 @@
 package com.example.lyw.expressdelivery.request;
 
 
-
 import com.example.lyw.expressdelivery.net.CachePolicy;
 import com.example.lyw.expressdelivery.net.HttpMethod;
 import com.example.lyw.expressdelivery.net.NameValuesMap;
@@ -15,11 +14,19 @@ import java.io.InputStream;
  * Created by LYW on 2017/3/6.
  */
 
-public abstract class Request implements Comparable<Request>{
-      private int priorityId;
-      private String url;
-      private HttpHeader header;
-      private Params params;
+public abstract class Request implements Comparable<Request> {
+    private int priorityId;
+    private String url;
+    private HttpHeader header;
+    private Params params;
+
+    private HttpMethod mMethod;
+    private requestBody mBody;
+    private CachePolicy mCachePolicy;
+    private String mTag;
+
+
+    protected Listener mListener;
 
     public HttpMethod getmMethod() {
         return mMethod;
@@ -28,12 +35,6 @@ public abstract class Request implements Comparable<Request>{
     public void setmMethod(HttpMethod mMethod) {
         this.mMethod = mMethod;
     }
-
-    private HttpMethod mMethod;
-      private requestBody mBody;
-      private Listener mListener;
-      private CachePolicy mCachePolicy;
-      private String mTag;
 
     public Params getParams() {
         return params;
@@ -45,7 +46,7 @@ public abstract class Request implements Comparable<Request>{
 
     public Request(int priorityId, String url, HttpHeader header, HttpMethod
             mMethod, requestBody mBody, Listener mListener, CachePolicy
-            mCachePolicy, Params params) {
+                           mCachePolicy, Params params) {
         this.priorityId = priorityId;
         this.url = url;
         this.header = header;
@@ -66,16 +67,17 @@ public abstract class Request implements Comparable<Request>{
     }
 
     private boolean isCancle = true;
-      private boolean isNeedCache = false;
+    private boolean isNeedCache = false;
 
 
-
-    public void setIdNeedCache(boolean flag){
-           isNeedCache = flag;
+    public void setIdNeedCache(boolean flag) {
+        isNeedCache = flag;
     }
-    public boolean getIsNeedCache(){
-        return  isNeedCache;
+
+    public boolean getIsNeedCache() {
+        return isNeedCache;
     }
+
     public int getPriorityId() {
         return priorityId;
     }
@@ -108,7 +110,7 @@ public abstract class Request implements Comparable<Request>{
         this.mBody = mBody;
     }
 
-    public void cancleRequest(){
+    public void cancleRequest() {
         isCancle = false;
     }
 
@@ -117,21 +119,15 @@ public abstract class Request implements Comparable<Request>{
         return priorityId - request.priorityId;
     }
 
-    public void setListener(Listener listener){
-           mListener = listener;
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
-    public void parseResponse(InputStream is){
-           Response response = onParesResponse(is);
-          if (null != response){
-                 mListener.onSuccess(response);
-          }else {
-              mListener.onFailed("失败");
-          }
-    }
-    public abstract Response onParesResponse(InputStream inputStream);
 
-    public interface Listener{
-        void onSuccess(Response response);
+    public abstract void onParesResponse(InputStream inputStream);
+
+    public interface Listener<T> {
+        void onSuccess(T response);
+
         void onFailed(String str);
     }
 }

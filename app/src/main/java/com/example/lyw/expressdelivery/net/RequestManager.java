@@ -59,9 +59,8 @@ public class RequestManager {
         return INSTACE;
     }
 
-    public static void addRequest(Request request, Request.Listener listener) {
+    public static void addRequest(Request request) {
         if (null != request) {
-            request.setListener(listener);
             mRequstQueue.put(request);
         }
     }

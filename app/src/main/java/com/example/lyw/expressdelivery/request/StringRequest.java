@@ -20,31 +20,34 @@ import java.util.HashMap;
  * Created by LYW on 2017/3/17.
  */
 
-public class StringRequst extends Request {
+public class StringRequest extends Request {
 
-    private static final String TAG = "StringRequst";
+    private static final String TAG = "StringRequest";
 
-    public StringRequst(int priorityId, String url, HttpHeader header,
-                        HttpMethod mMethod, requestBody mBody, Listener
-                                mListener, CachePolicy mCachePolicy,
-                       Params params) {
+    public StringRequest(int priorityId, String url, HttpHeader header,
+                         HttpMethod mMethod, requestBody mBody, Listener
+                                 mListener, CachePolicy mCachePolicy,
+                         Params params) {
         super(priorityId, url, header, mMethod, mBody, mListener, mCachePolicy, params);
     }
 
-
     @Override
-    public Response onParesResponse(InputStream inputStream) {
+    public void onParesResponse(InputStream inputStream) {
+
         InputStreamReader isr = new InputStreamReader(inputStream);
         BufferedReader br = new BufferedReader(isr);
         StringBuilder sb = new StringBuilder();
         String str;
         try {
-            while ((str = br.readLine())!=null){
+            while ((str = br.readLine()) != null) {
                 sb.append(str);
             }
+            Response<String> stringResponse = new Response<>();
+            stringResponse.setData(sb.toString());
+            if (null != mListener) mListener.onSuccess(stringResponse);
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (br != null) {
                     br.close();
@@ -52,13 +55,12 @@ public class StringRequst extends Request {
                 if (isr != null) {
                     isr.close();
                 }
-            }catch (IOException e) {
-                    e.printStackTrace();
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        Log.d(TAG, "数据返回来拉！！！"+sb.toString());
-        return null;
         }
-
+        Log.d(TAG, "数据返回来拉！！！" + sb.toString());
     }
+
+}
 

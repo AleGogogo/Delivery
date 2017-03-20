@@ -4,7 +4,7 @@ package com.example.lyw.expressdelivery.entity;
  * Created by LYW on 2017/3/16.
  */
 
-public class Person_Nearly {
+public class PersonNearly {
     /**
      * guid : 7A61F68D14E36D958F494507AA4134A2
      * courierName : 李团伟

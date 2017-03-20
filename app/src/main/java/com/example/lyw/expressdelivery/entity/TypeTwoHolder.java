@@ -17,9 +17,9 @@ public class TypeTwoHolder extends TypeHolder{
     private TextView mCompany;
     private TextView mLocalInfo;
     private TextView mTime;
-    private Person_Nearly mPerson;
+    private PersonNearly mPerson;
 
-    public TypeTwoHolder(View itemView,Person_Nearly mPerson) {
+    public TypeTwoHolder(View itemView,PersonNearly mPerson) {
         super(itemView);
         mName = (TextView)itemView.findViewById(R.id.id_name_text);
         mCompany = (TextView)itemView.findViewById(R.id.fujinren_company);
@@ -47,8 +47,8 @@ public class TypeTwoHolder extends TypeHolder{
 
     @Override
     public void bindHolder(Object o) {
-        if (o instanceof Person_Nearly)
-            mPerson = (Person_Nearly) o;
+        if (o instanceof PersonNearly)
+            mPerson = (PersonNearly) o;
         mName.setText(mPerson.getCourierName());
         mCompany.setText(mPerson.getCompanyName());
         mLocalInfo.setText(mPerson.getWorkArea());

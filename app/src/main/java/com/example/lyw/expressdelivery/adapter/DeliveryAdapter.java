@@ -1,14 +1,13 @@
 package com.example.lyw.expressdelivery.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.lyw.expressdelivery.R;
-import com.example.lyw.expressdelivery.entity.Person_Nearly;
+import com.example.lyw.expressdelivery.entity.PersonNearly;
 import com.example.lyw.expressdelivery.entity.TypeTwoHolder;
 
 import java.util.List;
@@ -20,10 +19,10 @@ import java.util.List;
 public class DeliveryAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
-    private List<Person_Nearly> mPepoles;
+    private List<PersonNearly> mPepoles;
     private Context mContext;
 
-    public DeliveryAdapter(List<Person_Nearly> mPepoles, Context mContext) {
+    public DeliveryAdapter(List<PersonNearly> mPepoles, Context mContext) {
         this.mPepoles = mPepoles;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);

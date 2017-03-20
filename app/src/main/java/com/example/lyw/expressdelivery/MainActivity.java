@@ -4,26 +4,28 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.lyw.expressdelivery.fragement.BasicFragment;
+import com.example.lyw.expressdelivery.entity.OrderPage;
+import com.example.lyw.expressdelivery.entity.PersonNearly;
 import com.example.lyw.expressdelivery.fragement.DeliveryFragment;
 import com.example.lyw.expressdelivery.fragement.HomeFragment;
 import com.example.lyw.expressdelivery.fragement.SearchFragment;
 import com.example.lyw.expressdelivery.net.CachePolicy;
 import com.example.lyw.expressdelivery.net.HttpMethod;
-import com.example.lyw.expressdelivery.net.NameValuesMap;
 import com.example.lyw.expressdelivery.net.RequestManager;
 import com.example.lyw.expressdelivery.net.Response;
+import com.example.lyw.expressdelivery.request.ObjectRequest;
 import com.example.lyw.expressdelivery.request.Params;
 import com.example.lyw.expressdelivery.request.Request;
-import com.example.lyw.expressdelivery.request.StringRequst;
+import com.example.lyw.expressdelivery.request.StringRequest;
 import com.example.lyw.expressdelivery.request.requestBody;
 import com.example.lyw.expressdelivery.util.HttpHeader;
 import com.example.lyw.expressdelivery.util.RequestUrl;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton mHomeButton;
@@ -63,20 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 mDeliveryButton.setImageResource(R.drawable
                         .tab_delivery_pressed);
                 replaceFragment(new DeliveryFragment());
-                final StringRequst requst = initRequest();
-                mRequestManager.addRequest(requst, new Request.Listener() {
-                    @Override
-                    public void onSuccess(Response response) {
-
-                    }
-
-                    @Override
-                    public void onFailed(String str) {
-                        Log.d(TAG, "onFailed: "+str);
-                    }
-                });
-        }
-    });
+                mRequestManager.addRequest(initRequest());
+            }
+        });
     }
 
     private void initView() {
@@ -93,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         mFragmentManager.beginTransaction().replace(R.id
                 .fragment_container, fragment).commit();
     }
-    private StringRequst initRequest(){
+
+    private ObjectRequest initRequest() {
         HttpHeader header = new HttpHeader();
         header.setAcceptEncoding(HttpHeader.ACCEPT_ENCODING, "gzip");
         header.setUserAgent(HttpHeader.USER_AGENT, "Dalvik/2.1.0 " +
@@ -102,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         header.setContentType(HttpHeader.CONTENT_TYPE,
                 "application/x-www-form-urlencoded;charset=UTF-8");
         header.setConnection(HttpHeader.CONNECTION, "Keep-Alive");
-        requestBody body =new requestBody();
+        requestBody body = new requestBody();
         body.setLatitude("40.047275040481445");
         body.setLongitude("116.32690854887272");
         body.setLtype("mars");
@@ -115,28 +107,39 @@ public class MainActivity extends AppCompatActivity {
         body.setOs_version("android5.1.1");
         body.setNt("wifi");
         body.setTra("f11761ea-3f99-46ca-b959-6334a0a25e7f");
-//        long t = Long.getLong("1489224769854");
+        long t = Long.parseLong("1489224769854");
+        body.setVersionCode(436);
 //        Log.d(TAG, "initRequest: t is "+ t);
-//        body.setT(t);
+        body.setT(t);
         body.setMType("mars");
         body.setUchannel("null");
         Params params = new Params();
         Gson gson = new Gson();
         String json = gson.toJson(body);
-        params.put("mathod","courieraround");
-        params.put("json",json);
-        params.put("hash","78aca618d7cfdd729ac930e1fb5fbf17");
-        params.put("token","M9MpmsceIrS74Jzk95Cbdvo4p8TM5d_0TgUuIyTdBlw");
-        params.put("userid","11081583");
-        StringRequst requst = new StringRequst(5, RequestUrl.REQUEST_URL, header,
-                HttpMethod.POST, body, mListener, new CachePolicy() {
+        params.put("method", "courieraround");
+        params.put("json", json);
+        params.put("hash", "78aca618d7cfdd729ac930e1fb5fbf17");
+        params.put("token", "M9MpmsceIrS74Jzk95Cbdvo4p8TM5d_0TgUuIyTdBlw");
+        params.put("userid", "11081583");
+        ObjectRequest requst = new ObjectRequest(5, OrderPage.class, RequestUrl.REQUEST_ORDER_URL, header,
+                HttpMethod.POST, body, new Request.Listener<OrderPage>() {
+            @Override
+            public void onSuccess(OrderPage response) {
+
+            }
+
+            @Override
+            public void onFailed(String str) {
+
+            }
+        }, new CachePolicy() {
             @Override
             public boolean isNeedCached() {
                 return false;
             }
-        },params);
+        }, params);
         requst.setTag("string");
         return requst;
     }
-    }
+}
 

@@ -1,5 +1,7 @@
 package com.example.lyw.expressdelivery.net;
 
+import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 
 
@@ -16,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by LYW on 2017/3/9.
@@ -51,13 +54,13 @@ public class HttpConnectionStack implements Httpstack {
             PrintStream ps = new PrintStream(os);
             Params params = mRequest.getParams();
             StringBuilder sb = new StringBuilder();
-            for (String key:
-                 params.keySet()) {
-                sb.append(key+"="+params.get(key));
-                if (params.get(key) != "json") {
-                   sb.append("&");
-                }
+            int index = 0;
+            for (String key: params.keySet()) {
+                String s = params.get(key);
+                if (TextUtils.equals("json",key)) s = URLEncoder.encode(s);
+                sb.append(key + "=" + s).append(index++ < params.size()-1 ? "&" :"");
             }
+            sb.append("&");
             Log.d(TAG, "perFormRequest: sb is"+sb.toString());
             ps.print(sb.toString());
             ps.flush();

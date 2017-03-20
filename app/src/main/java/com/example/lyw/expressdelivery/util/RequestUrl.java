@@ -8,4 +8,12 @@ public class RequestUrl {
     public static final String DANHAO = "";
     public static final String REQUEST_URL = "https://m.kuaidi100.com";
     public static final String QUERY_KUAIDI = "/index_all.html?";
+
+
+    public static final String REQUEST_ORDER_URL = "http://j.kuaidi100.com/searchapi.do";
+
+
+
+
+
 }
